@@ -7,6 +7,7 @@ export default class ReactGoogleAutocomplete extends React.Component {
     types: PropTypes.array,
     componentRestrictions: PropTypes.object,
     bounds: PropTypes.object,
+    defaultValue: PropTypes.string,
   }
 
   constructor(props) {
@@ -87,7 +88,7 @@ export class ReactCustomGoogleAutocomplete extends React.Component {
       this.placeService = new google.maps.places.PlacesService(this.refs.div);
       this.placeService.getDetails({placeId: this.props.input.value}, (e, status) => {
         if(status === 'OK') {
-					this.refs.input.value = e.formatted_address;
+					this.refs.input.value = e.formatted_address || this.props.defaultValue;
         }
       });
     }
